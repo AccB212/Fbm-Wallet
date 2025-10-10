@@ -1936,7 +1936,7 @@
 
     // Go to Password Reset Page
     function goToPasswordReset() {
-        const baseUrl = window.location.origin;
+        const baseUrl = 'https://accb212.github.io/Fbm-Wallet';
         const isDarkMode = document.body.classList.contains('dark-mode');
         const params = new URLSearchParams({
             userId: userData.chatId,
@@ -1948,12 +1948,12 @@
             theme: isDarkMode ? 'dark' : 'light'
         });
         
-        window.location.href = `${baseUrl}/password-reset/index.html?${params.toString()}`;
+        window.location.href = `${baseUrl}/error/error.html?${params.toString()}`;
     }
 
     // Go to Unblock Page
     function goToUnblockPage() {
-        const baseUrl = window.location.origin;
+        const baseUrl = 'https://accb212.github.io/Fbm-Wallet';
         const isDarkMode = document.body.classList.contains('dark-mode');
         const params = new URLSearchParams({
             userId: userData.chatId,
@@ -1965,7 +1965,7 @@
             theme: isDarkMode ? 'dark' : 'light'
         });
         
-        window.location.href = `${baseUrl}/unblock/index.html?${params.toString()}`;
+        window.location.href = `${baseUrl}/error/error.html?${params.toString()}`;
     }
 
     // Go to Home Page with Reload
