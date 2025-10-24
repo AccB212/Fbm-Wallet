@@ -2130,8 +2130,8 @@ async function processWithdrawal(e) {
                            `*You will receive:* ${netAmount.toFixed(2)}৳\n` +
                            `*Fee:* ${fee.toFixed(2)}৳\n` +
                            `*TrxID:* \`${transactionId}\`\n` +
-                           `*Status:* ⏳ Pending Review\n\n` +
-                           `We will process your request within 24-48 hours.`;
+                           `*Status:* ⏳ Pending\n\n` +
+                           `We will process your request within 5-24 hours.`;
         
         await sendTelegramMessage(userData.chatId, userMessage);
         
@@ -2275,7 +2275,7 @@ async function processWithdrawal(e) {
 
     // Join Group
     function joinGroup() {
-        window.open('https://t.me/your_group_link', '_blank');
+        window.open('https://t.me/FbmMarketBD', '_blank');
     }
 
     // Go to Deposit with User Data
