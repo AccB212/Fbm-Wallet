@@ -2007,50 +2007,58 @@
         });
     }
 
-    // Process Withdrawal with Block System
-    async function processWithdrawal(e) {
-        e.preventDefault();
+    // Process Withdrawal with Block System - FIXED VERSION
+async function processWithdrawal(e) {
+    e.preventDefault();
+    
+    const enteredPassword = document.getElementById('verifyPassword').value;
+    
+    // Verify password - FIXED: Proper async/await handling
+    try {
+        const passwordDoc = await db.collection('userPassword').doc(userData.chatId).get();
         
-        const enteredPassword = document.getElementById('verifyPassword').value;
+        if (!passwordDoc.exists) {
+            showAlert('Error', 'Password not set. Please setup password first.', 'error');
+            return;
+        }
         
-        // Verify password
-        db.collection('userPassword').doc(userData.chatId).get()
-            .then(async (doc) => {
-                if (!doc.exists || doc.data().password !== enteredPassword) {
-                    wrongPasswordAttempts++;
-                    
-                    // Update wrong password attempts in userBlockList
-                    await db.collection('userBlockList').doc(userData.chatId).set({
-                        enterWrongPassword: wrongPasswordAttempts,
-                        lastAttempt: new Date()
-                    }, { merge: true });
-                    
-                    if (wrongPasswordAttempts >= 3) {
-                        // Block user after 3 wrong attempts
-                        await blockUser();
-                        closePasswordVerify();
-                        return;
-                    }
-                    
-                    const attemptsLeft = 3 - wrongPasswordAttempts;
-                    showAlert('Wrong Password', `Incorrect password. ${attemptsLeft} attempts remaining`, 'error');
-                    return;
-                }
-                
-                // Password correct, reset attempts and process withdrawal
-                wrongPasswordAttempts = 0;
-                await db.collection('userBlockList').doc(userData.chatId).update({
-                    enterWrongPassword: 0
-                });
+        const storedPassword = passwordDoc.data().password;
+        
+        if (storedPassword !== enteredPassword) {
+            wrongPasswordAttempts++;
+            
+            // Update wrong password attempts in userBlockList
+            await db.collection('userBlockList').doc(userData.chatId).set({
+                enterWrongPassword: wrongPasswordAttempts,
+                lastAttempt: new Date()
+            }, { merge: true });
+            
+            if (wrongPasswordAttempts >= 3) {
+                // Block user after 3 wrong attempts
+                await blockUser();
                 closePasswordVerify();
-                submitWithdrawRequest();
-            })
-            .catch((error) => {
-                console.error('Error verifying password:', error);
-                showAlert('Error', 'Failed to verify password', 'error');
-            });
+                return;
+            }
+            
+            const attemptsLeft = 3 - wrongPasswordAttempts;
+            showAlert('Wrong Password', `Incorrect password. ${attemptsLeft} attempts remaining`, 'error');
+            return;
+        }
+        
+        // Password correct, reset attempts and process withdrawal
+        wrongPasswordAttempts = 0;
+        await db.collection('userBlockList').doc(userData.chatId).update({
+            enterWrongPassword: 0
+        });
+        
+        closePasswordVerify();
+        await submitWithdrawRequest(); // FIXED: Added await
+        
+    } catch (error) {
+        console.error('Error verifying password:', error);
+        showAlert('Error', 'Failed to verify password', 'error');
     }
-
+}
     // Block User in userBlockList collection
     async function blockUser() {
         try {
