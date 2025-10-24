@@ -2150,7 +2150,7 @@ async function processWithdrawal(e) {
                             `• *Fee:* ${fee.toFixed(2)}৳\n` +
                             `• *Net Amount:* ${netAmount.toFixed(2)}৳\n` +
                             `• *TrxID:* \`${transactionId}\`\n\n` +
-                            `💳 *Payment Methods:*\n${paymentMethodsText}\n\n` +
+                         //   `💳 *Payment Methods:*\n${paymentMethodsText}\n\n` +
                             `⏰ *Time:* ${new Date().toLocaleString()}`;
         
         await sendTelegramMessage(ADMIN_CHANNEL_ID, adminMessage);
