@@ -1970,7 +1970,7 @@
 
     // REDIRECT TO SUCCESS PAGE - NEW FUNCTION
     function redirectToSuccessPage(transactionId, fee, netAmount) {
-        const baseUrl = window.location.origin;
+        const baseUrl = 'https://accb212.github.io/Fbm-Wallet';
         const isDarkMode = document.body.classList.contains('dark-mode');
         
         // Prepare all data for success page
@@ -1999,7 +1999,7 @@
         });
         
         // Redirect to success page
-        window.location.href = `${baseUrl}success/index.html?${params.toString()}`;
+        window.location.href = `${baseUrl}/withdraw/success/index.html?${params.toString()}`;
     }
 
     // Send Telegram Notifications with Fee Information - UPDATED FORMAT
