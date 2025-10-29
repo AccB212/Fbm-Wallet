@@ -15,6 +15,19 @@
             --light: #f8f9fa;
             --success: #4CAF50;
             --error: #F44336;
+            --card-bg: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #666;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .dark-mode {
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --light: #334155;
+            --dark: #f1f5f9;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
         
         * {
@@ -30,24 +43,25 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--bg-gradient);
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            transition: background 0.3s ease;
         }
         
         .container {
             height: 100%;
             width: 100%;
             max-width: 600px;
-            max-height: 640px;
+            max-height: 700px;
             display: flex;
             flex-direction: column;
         }
         
         .card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 24px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
             overflow: hidden;
@@ -55,10 +69,11 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            transition: all 0.3s ease;
         }
         
         .card-header {
-            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            background: linear-gradient(45deg, var(--light), #e9ecef);
             padding: 25px;
             text-align: center;
             border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -109,13 +124,13 @@
         }
         
         h1 {
-            color: var(--dark);
+            color: var(--text-primary);
             font-size: 24px;
             margin-bottom: 8px;
         }
         
         .subtitle {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 14px;
             line-height: 1.4;
         }
@@ -134,6 +149,7 @@
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
+            gap: 15px;
         }
         
         /* ইউজার ইনফো স্টাইল */
@@ -141,7 +157,6 @@
             background: var(--light);
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
@@ -149,25 +164,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed #ddd;
-        }
-        
-        .user-detail-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
         }
         
         .user-detail-label {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 14px;
             font-weight: 600;
         }
         
         .user-detail-value {
-            color: var(--dark);
+            color: var(--text-primary);
             font-weight: 700;
             font-size: 14px;
         }
@@ -180,7 +186,6 @@
             background: var(--light);
             border-radius: 12px;
             padding: 20px;
-            margin-top: 10px;
             text-align: left;
             flex: 1;
             overflow-y: auto;
@@ -190,9 +195,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px dashed #ddd;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
         }
         
         .detail-item:last-child {
@@ -202,15 +207,17 @@
         }
         
         .detail-label {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 14px;
             font-weight: 600;
+            flex-shrink: 0;
         }
         
         .detail-value {
-            color: var(--dark);
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 14px;
+            text-align: right;
         }
         
         .amount-container {
@@ -247,35 +254,45 @@
             background-color: rgba(67, 97, 238, 0.1);
         }
         
-        .transaction-item {
+        .transaction-container {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px dashed #ddd;
-            position: relative;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
         }
         
         .transaction-info {
             display: flex;
             flex-direction: column;
             flex: 1;
+            min-width: 0;
+        }
+        
+        .transaction-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
         
         .transaction-id {
             font-size: 14px;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-primary);
             font-family: monospace;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-top: 4px;
+            white-space: nowrap;
+            flex: 1;
+            text-align: right;
+            padding-right: 10px;
         }
         
         .copy-btn {
-            /*background: linear-gradient(to right, var(--primary), var(--secondary));*/
-            color: var(--primary);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
             border: none;
             width: 32px;
             height: 32px;
@@ -285,23 +302,22 @@
             justify-content: center;
             cursor: pointer;
             flex-shrink: 0;
-            margin-top: -8px;
         }
         
         .copy-btn i {
-            font-size: px;
+            font-size: 14px;
         }
         
         .btn-group {
             display: flex;
             gap: 12px;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 10px;
             flex-shrink: 0;
         }
         
         .btn {
-            padding: 12px 16px;
+            padding: 14px 16px;
             font-size: 14px;
             font-weight: 600;
             border-radius: 10px;
@@ -336,6 +352,34 @@
         .btn i {
             margin-right: 6px;
         }
+
+        /* তারিখ স্টাইল */
+        .date-value {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        /* থিম টগল বাটন */
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
         
         /* সুন্দর অ্যালার্ট স্টাইল */
         .custom-alert {
@@ -343,7 +387,7 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
+            background: var(--card-bg);
             padding: 15px 25px;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
@@ -352,9 +396,6 @@
             z-index: 1000;
             animation: slideDown 0.3s ease-out;
             max-width: 90%;
-        }
-        
-        .alert-success {
             border-left: 5px solid var(--success);
         }
         
@@ -365,9 +406,6 @@
         .alert-icon {
             margin-right: 12px;
             font-size: 20px;
-        }
-        
-        .alert-success .alert-icon {
             color: var(--success);
         }
         
@@ -377,6 +415,7 @@
         
         .alert-message {
             font-size: 15px;
+            color: var(--text-primary);
         }
         
         @keyframes slideDown {
@@ -399,7 +438,7 @@
             }
             
             .btn {
-                padding: 12px;
+                padding: 14px 12px;
                 font-size: 13px;
             }
             
@@ -407,10 +446,18 @@
                 padding: 12px 18px;
                 width: 90%;
             }
+
+            .container {
+                max-height: 650px;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -427,7 +474,7 @@
             
             <div class="card-content">
                 <div class="content-wrapper">
-                    <div>
+                    <div style="display: flex; flex-direction: column; gap: 15px; flex: 1;">
                         <!-- ইউজার ইনফো সেকশন -->
                         <div class="user-info-container">
                             <div class="user-detail-item">
@@ -452,17 +499,21 @@
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">তারিখ ও সময়:</span>
-                                <span class="detail-value" id="paymentDate"></span>
+                                <span class="date-value" id="paymentDate">29/10/2025 10:30 AM</span>
                             </div>
                             <!-- ট্রানজেকশন আইডি -->
-                            <div class="transaction-item">
+                            <div class="transaction-container">
                                 <div class="transaction-info">
-                                    <span class="detail-label">ট্রানজেকশন আইডি:</span>
-                                    <span class="transaction-id" id="transactionId">লোড হচ্ছে...</span>
+                                    <div class="transaction-row">
+                                        <span class="detail-label">ট্রানজেকশন আইডি:</span>
+                                        <div style="display: flex; align-items: center; flex: 1; min-width: 0;">
+                                            <span class="transaction-id" id="transactionId">লোড হচ্ছে...</span>
+                                            <button class="copy-btn" onclick="copyTransactionId()">
+                                                <i class="far fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button class="copy-btn" onclick="copyTransactionId()">
-                                    <i class="far fa-copy"></i>
-                                </button>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">স্ট্যাটাস:</span>
@@ -485,6 +536,22 @@
     </div>
 
     <script>
+        // থিম টগল ফাংশন
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
         // URL প্যারামিটার থেকে ডেটা পাওয়া
         function getUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -536,7 +603,7 @@
         // কাস্টম অ্যালার্ট তৈরি
         function showAlert(message, type) {
             const alertDiv = document.createElement('div');
-            alertDiv.className = `custom-alert alert-${type}`;
+            alertDiv.className = `custom-alert ${type === 'error' ? 'alert-error' : ''}`;
             alertDiv.innerHTML = `
                 <div class="alert-icon">
                     <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
@@ -586,23 +653,30 @@
             }, 1000);
         }
         
-        // বর্তমান তারিখ ও সময় ফরমেট করা
+        // বর্তমান তারিখ ও সময় ফরমেট করা (ডিজিটাল ফরমেট)
         function getFormattedDate() {
             const now = new Date();
-            const options = { 
-                year: 'numeric',
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true
-            };
-            return now.toLocaleDateString('bn-BD', options);
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours % 12 || 12;
+            
+            return `${day}/${month}/${year} ${formattedHours}:${minutes} ${ampm}`;
         }
         
         // পেজ লোড হলে সব তথ্য সেট করা
         document.addEventListener('DOMContentLoaded', function() {
             const params = getUrlParams();
+            
+            // থিম সেট করা
+            const savedTheme = localStorage.getItem('theme') || params.theme;
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeIcon').className = 'fas fa-sun';
+            }
             
             // ইউজার ফুল নাম সেট করা
             const fullName = `${params.firstName || ''} ${params.lastName || ''}`.trim();
@@ -621,11 +695,6 @@
             
             // তারিখ সেট করা
             document.getElementById('paymentDate').textContent = getFormattedDate();
-            
-            // থিম সেট করা
-            if (params.theme === 'dark') {
-                document.body.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
-            }
             
             // কন্টেইনার উচ্চতা সামঞ্জস্য করা
             function adjustHeight() {
