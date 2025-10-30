@@ -57,58 +57,13 @@
             min-height: 100vh;
         }
 
-        /* Header Styles */
+        /* Header Styles - UPDATED: Only back button visible */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             padding: 5px 0;
             margin-bottom: 20px;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-        }
-
-        .profile-pic {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .profile-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .profile-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .profile-details {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .back-btn {
@@ -134,6 +89,7 @@
             margin: 20px 0;
             box-shadow: var(--shadow);
             position: relative;
+            text-align: center;
         }
 
         .section-title {
@@ -142,23 +98,54 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             gap: 10px;
         }
 
         .video-container {
             width: 100%;
-            height: 200px;
+            height: 180px;
             border-radius: var(--radius);
             margin-bottom: 15px;
             overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            cursor: pointer;
         }
 
-        .video-container iframe {
+        .video-thumbnail {
             width: 100%;
             height: 100%;
-            border: none;
-            border-radius: var(--radius);
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: white;
+        }
+
+        .play-button i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-left: 3px;
         }
 
         .guide-text {
@@ -166,11 +153,13 @@
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 15px;
+            text-align: left;
         }
 
         .terms-list {
             list-style: none;
             margin-bottom: 20px;
+            text-align: left;
         }
 
         .terms-list li {
@@ -227,249 +216,6 @@
             transform: none;
         }
 
-        /* History Section */
-        .history-section {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: var(--shadow);
-        }
-
-        .search-container {
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 12px 40px 12px 15px;
-            border: none;
-            border-radius: var(--radius);
-            background: var(--bg);
-            color: var(--text);
-            font-size: 0.9rem;
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-        }
-
-        .history-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .history-item {
-            background: var(--bg);
-            border-radius: var(--radius);
-            padding: 15px;
-            margin-bottom: 10px;
-            border-left: 4px solid var(--primary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .history-item:hover {
-            transform: translateX(5px);
-            box-shadow: var(--shadow);
-        }
-
-        .history-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .history-timestamp {
-            font-size: 12px;
-            color: #888;
-            background: var(--card);
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-family: monospace;
-            max-width: 120px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .history-amount {
-            font-weight: bold;
-            color: var(--primary);
-            font-size: 18px;
-        }
-
-        .history-details {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .history-date {
-            color: #888;
-        }
-
-        .history-status {
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .status-pending {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-
-        .status-approved {
-            background-color: #d4edda;
-            color: #155724;
-        }
-
-        .status-rejected {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-
-        .history-actions {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .details-btn {
-            background: var(--primary);
-            padding: 6px 12px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .no-history {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-light);
-        }
-
-        .no-history i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--card);
-            border-radius: 20px 20px 0 0;
-            padding: 30px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .modal-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-
-        /* Password Modal - No Close Button */
-        .password-modal .modal-header {
-            justify-content: center;
-        }
-
-        .password-modal .close-modal {
-            display: none;
-        }
-
-        .password-input-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .password-input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .password-input-group input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid var(--text-light);
-            border-radius: var(--radius);
-            background: var(--bg);
-            color: var(--text);
-            font-size: 1.1rem;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        /* Password Reset Link */
-        .password-reset-link {
-            text-align: right;
-            margin-top: 10px;
-        }
-
-        .password-reset-link a {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .password-reset-link a:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
         /* Amount Input Page */
         .amount-input-page {
             display: none;
@@ -515,7 +261,7 @@
             margin-bottom: 20px;
         }
 
-        /* Payment Method Page - 3 Column Grid */
+        /* Payment Method Page */
         .payment-method-page {
             display: none;
         }
@@ -560,7 +306,7 @@
             font-size: 0.8rem;
         }
 
-        /* Payment Input Section - 2 Column Grid */
+        /* Payment Input Section */
         .payment-input-section {
             margin: 20px 0;
         }
@@ -638,7 +384,86 @@
             font-size: 0.8rem;
         }
 
-        /* Insufficient Balance Alert with Close Button */
+        /* Block Overlay - FIXED: Proper permanent block */
+        .block-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(15px);
+        }
+
+        .block-container {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 20px;
+        }
+
+        .block-icon {
+            font-size: 80px;
+            color: var(--error);
+            margin-bottom: 25px;
+            text-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .block-title {
+            font-size: 28px;
+            color: var(--error);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .block-message {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .block-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .block-btn {
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .block-btn.back {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        .block-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Insufficient Balance Alert */
         .insufficient-balance-alert {
             position: fixed;
             bottom: -100%;
@@ -702,22 +527,6 @@
             color: var(--text-light);
             margin-bottom: 20px;
             line-height: 1.5;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-light);
-        }
-
-        /* History Item Improved */
-        .history-payment-method {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
 
         /* Block Alert Popup */
@@ -840,23 +649,105 @@
             color: var(--accent);
         }
 
-        /* Mini SweetAlert Styles */
-        .mini-alert-popup {
-            width: auto !important;
-            max-width: 300px !important;
-            padding: 12px 16px !important;
-            font-size: 14px !important;
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
-        .mini-alert-title {
-            font-size: 16px !important;
-            margin-bottom: 8px !important;
+        .modal-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card);
+            border-radius: 20px 20px 0 0;
+            padding: 30px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
 
-        .mini-alert-icon {
-            width: 24px !important;
-            height: 24px !important;
-            font-size: 14px !important;
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        /* Password Modal - No Close Button */
+        .password-modal .modal-header {
+            justify-content: center;
+        }
+
+        .password-modal .close-modal {
+            display: none;
+        }
+
+        .password-input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .password-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .password-input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--text-light);
+            border-radius: var(--radius);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* Password Reset Link */
+        .password-reset-link {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .password-reset-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .password-reset-link a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -882,7 +773,7 @@
         </div>
     </div>
 
-    <!-- Permanent Block Overlay -->
+    <!-- Permanent Block Overlay - FIXED: Proper implementation -->
     <div class="block-overlay" id="blockOverlay">
         <div class="block-container">
             <div class="block-icon">
@@ -900,86 +791,53 @@
 
     <!-- Page 1: Withdraw Home -->
     <div class="container" id="homePage">
-        <!-- Header with User Profile -->
+        <!-- Header with Back Button Only - UPDATED: Profile completely hidden -->
         <header>
-            <div class="user-profile">
-                <div class="profile-pic" id="profilePic">U</div>
-                <div class="profile-info">
-                    <div class="profile-name" id="profileName">Loading...</div>
-                    <div class="profile-details">
-                        <span id="userName">@username</span> • 
-                        <span id="userId">ID: ...</span>
-                    </div>
-                </div>
-                <!-- Password reset button removed as requested -->
-          </div>
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
         </header> 
 
         <!-- Guide Section -->
         <div class="guide-section">
             <div class="section-title">
-                <span><i class="fas fa-play-circle"></i> How to Withdraw</span>
-                <button class="back-btn" onclick="goBack()">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
+                <span><i class="fas fa-wallet"></i> Withdraw Funds</span>
             </div>
             
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/lVjqvfHLlGo?si=LTLRTK-9MRozSQZQ" 
-                        title="Withdrawal Tutorial" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
+            <!-- Video Thumbnail with Play Button -->
+            <div class="video-container" id="videoThumbnail">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
             </div>
             
             <div class="guide-text">
-                Follow these simple steps to withdraw your earnings quickly and securely.
+                Follow these simple steps to withdraw your earnings securely. Make sure you have sufficient balance and valid payment methods added before proceeding with your withdrawal request.
             </div>
             
            <ul class="terms-list">
-    <li><i class="fas fa-check-circle"></i> Minimum withdrawal: <span id="minAmount">৳50</span></li>
-    <li><i class="fas fa-check-circle"></i> Maximum withdrawal: <span id="maxAmount">৳50000</span></li>
-    <li><i class="fas fa-check-circle"></i> Processing time: 24-48 hours</li>
-    <li id="feeListItem">
-        <i class="fas fa-check-circle"></i> 
-        <span id="feeText">No hidden fees</span>
-    </li>
-</ul>
+                <li><i class="fas fa-check-circle"></i> Minimum withdrawal: <span id="minAmount">৳50</span></li>
+                <li><i class="fas fa-check-circle"></i> Maximum withdrawal: <span id="maxAmount">৳50000</span></li>
+                <li><i class="fas fa-check-circle"></i> Processing time: 24-48 hours</li>
+                <li id="feeListItem">
+                    <i class="fas fa-check-circle"></i> 
+                    <span id="feeText">No hidden fees</span>
+                </li>
+            </ul>
             
             <button class="btn btn-secondary" id="continueWithdrawBtn">
-                <i class="fas fa-arrow-right"></i> Continue Withdraw
+                <i class="fas fa-arrow-right"></i> Start Withdrawal
             </button>
-        </div>
-
-        <!-- Withdraw History -->
-        <div class="history-section">
-            <div class="section-title">
-                <i class="fas fa-history"></i> Withdraw History
-            </div>
-            
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="searchHistory" placeholder="Search by TrxID...">
-            </div>
-            
-            <div class="history-list" id="historyList">
-                <div class="loading">Loading history...</div>
-            </div>
         </div>
     </div>
 
     <!-- Page 2: Amount Input -->
     <div class="container amount-input-page" id="amountPage">
         <header>
-            <div class="user-profile">
-                <button class="back-btn" id="backToHome">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <div class="profile-info">
-                    <div class="profile-name">Enter Amount</div>
-                    <div class="profile-details">Withdraw your balance</div>
-                </div>
-            </div>
+            <!-- UPDATED: Only back button, no profile -->
+            <button class="back-btn" id="backToHome">
+                <i class="fas fa-arrow-left"></i>
+            </button>
         </header>
 
         <div class="amount-input-container">
@@ -998,7 +856,7 @@
         <!-- Fee Display Section -->
         <div class="fee-display" id="feeDisplay" style="display: none;">
             <div class="fee-info">
-                <span>Withdrawal Fee:</span> <!-- ({withdrawFee}%) -->
+                <span>Withdrawal Fee:</span>
                 <span class="fee-amount" id="feeAmount">৳0.00</span>
             </div>
             <div class="fee-info">
@@ -1012,18 +870,13 @@
         </button>
     </div>
 
-    <!-- Page 3: Payment Method - 3 Column Grid -->
+    <!-- Page 3: Payment Method -->
     <div class="container payment-method-page" id="paymentPage">
         <header>
-            <div class="user-profile">
-                <button class="back-btn" id="backToAmount">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <div class="profile-info">
-                    <div class="profile-name">Payment Method</div>
-                    <div class="profile-details">Select how to receive money</div>
-                </div>
-            </div>
+            <!-- UPDATED: Only back button, no profile -->
+            <button class="back-btn" id="backToAmount">
+                <i class="fas fa-arrow-left"></i>
+            </button>
         </header>
 
         <!-- 3 Column Grid for Payment Methods -->
@@ -1050,12 +903,11 @@
         </button>
     </div>
 
-    <!-- Password Setup Modal - No Close Button -->
+    <!-- Password Setup Modal -->
     <div class="modal password-modal" id="passwordSetupModal">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title">Set Security Password</div>
-                <!-- No close button -->
             </div>
             <form id="passwordSetupForm">
                 <div class="password-input-group">
@@ -1073,7 +925,7 @@
         </div>
     </div>
 
-    <!-- Password Verify Modal - With Close Button and Reset Link -->
+    <!-- Password Verify Modal -->
     <div class="modal" id="passwordVerifyModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1101,7 +953,7 @@
         </div>
     </div>
 
-    <!-- Insufficient Balance Alert with Close Button -->
+    <!-- Insufficient Balance Alert -->
     <div class="insufficient-balance-alert" id="insufficientBalanceAlert">
         <div class="alert-header">
             <div class="alert-title">Insufficient Balance</div>
@@ -1123,7 +975,7 @@
     </div>
 
     <script>
-    // Firebase Configuration - FIXED
+    // Firebase Configuration
     const firebaseConfig = {
         apiKey: "AIzaSyCTmr69oapXBF-WA9RhFRDglhszhKrgliw",
         authDomain: "fbm-wallet.firebaseapp.com",
@@ -1135,17 +987,18 @@
     };
 
     // Initialize Firebase
-    try {
-        firebase.initializeApp(firebaseConfig);
-    } catch (error) {
-        console.log('Firebase already initialized');
-    }
+    firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Telegram Bot Configuration - FIXED
+    // Telegram Bot Configuration
     const BOT_TOKEN = "7673657711:AAG9aHlpI8_Egvwi0fY9rxA4qyEfqOw16nU";
     const ADMIN_CHANNEL_ID = "-1002314597186";
     const BOT_API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+    // YouTube Video Configuration
+    const YOUTUBE_VIDEO_ID = "lVjqvfHLlGo";
+    const YOUTUBE_THUMBNAIL = `https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/hqdefault.jpg`;
+    const YOUTUBE_VIDEO_URL = `https://www.youtube.com/watch?v=${YOUTUBE_VIDEO_ID}`;
 
     // Telegram Web App
     const tg = window.Telegram.WebApp;
@@ -1162,7 +1015,7 @@
     let wrongPasswordAttempts = 0;
     let isUserBlocked = false;
 
-    // Payment Methods Configuration with Logos - FIXED LOGO URLs
+    // Payment Methods Configuration with Logos
     const paymentMethods = {
         Bkash: { 
             pattern: "^01[3-9][0-9]{8}$", 
@@ -1208,63 +1061,60 @@
 
     // Initialize App
     async function initializeApp() {
-        try {
-            // Set theme from URL parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const theme = urlParams.get('theme');
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-
-            // Telegram WebApp Expansion
-            if (tg && tg.expand) {
-                tg.expand();
-            }
-            
-            // Get Telegram User Data
-            let tgUser = null;
-            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                tgUser = tg.initDataUnsafe.user;
-            }
-            
-            // Fallback for testing
-            if (!tgUser) {
-                tgUser = {
-                    id: "123456789",
-                    username: "test_user",
-                    first_name: "Test",
-                    last_name: "User",
-                    photo_url: "https://via.placeholder.com/150"
-                };
-                showAlert('Demo Mode', 'Running in demo mode without Telegram', 'warning');
-            }
-            
-            userData = {
-                chatId: tgUser.id.toString(),
-                username: tgUser.username || `user_${tgUser.id}`,
-                firstName: tgUser.first_name || '',
-                lastName: tgUser.last_name || '',
-                photoUrl: tgUser.photo_url || ''
-            };
-            
-            updateUserProfile();
-            await loadUserData();
-            loadPaymentSettings();
-            loadPaymentMethods();
-            setupEventListeners();
-            
-            // Check if user is blocked - show popup alert if blocked
-            const isBlocked = await checkUserBlockStatus();
-            if (isBlocked) {
-                showBlockAlertPopup();
-            }
-        } catch (error) {
-            console.error('Error initializing app:', error);
-            showAlert('Error', 'Failed to initialize app', 'error');
+        // Set theme from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const theme = urlParams.get('theme');
+        if (theme === 'dark') {
+            document.body.classList.add('dark-mode');
         }
+
+        // Telegram WebApp Expansion
+        if (tg && tg.expand) {
+            tg.expand();
+        }
+        
+        // Get Telegram User Data
+        let tgUser = null;
+        if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            tgUser = tg.initDataUnsafe.user;
+        }
+        
+        // Fallback for testing
+        if (!tgUser) {
+            tgUser = {
+                id: "123456789",
+                username: "test_user",
+                first_name: "Test",
+                last_name: "User",
+                photo_url: "https://via.placeholder.com/150"
+            };
+            showAlert('Demo Mode', 'Running in demo mode without Telegram', 'warning');
+        }
+        
+        userData = {
+            chatId: tgUser.id.toString(),
+            username: tgUser.username || `user_${tgUser.id}`,
+            firstName: tgUser.first_name || '',
+            lastName: tgUser.last_name || '',
+            photoUrl: tgUser.photo_url || ''
+        };
+        
+        // Check if user is blocked FIRST - before showing any content
+        const isBlocked = await checkUserBlockStatus();
+        if (isBlocked) {
+            showBlockOverlay();
+            return; // Stop further execution if blocked
+        }
+        
+        updateUserProfile();
+        loadUserData();
+        loadPaymentSettings();
+        loadPaymentMethods();
+        setupEventListeners();
+        setupVideoThumbnail();
     }
 
-    // Check User Block Status from userBlockList collection
+    // Check User Block Status from userBlockList collection - FIXED
     async function checkUserBlockStatus() {
         try {
             let tgUser = null;
@@ -1295,12 +1145,20 @@
         }
     }
 
-    // Show Block Alert Popup (5 seconds auto close)
+    // Show Block Overlay - FIXED: Proper implementation
+    function showBlockOverlay() {
+        document.getElementById('blockOverlay').style.display = 'flex';
+        // Hide all other content
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('amountPage').style.display = 'none';
+        document.getElementById('paymentPage').style.display = 'none';
+    }
+
+    // Show Block Alert Popup (for temporary blocks)
     function showBlockAlertPopup() {
         const blockAlert = document.getElementById('blockAlertPopup');
         blockAlert.classList.add('show');
         
-        // Auto close after 5 seconds
         setTimeout(() => {
             closeBlockAlert();
         }, 10000);
@@ -1311,31 +1169,26 @@
         document.getElementById('blockAlertPopup').classList.remove('show');
     }
 
-    // Show Block Overlay - PERMANENT BLOCK (No Close Button, Only Back Button)
-    function showBlockOverlay() {
-        document.getElementById('blockOverlay').style.display = 'flex';
-        // Hide all other content
-        document.getElementById('homePage').style.display = 'none';
-        document.getElementById('amountPage').style.display = 'none';
-        document.getElementById('paymentPage').style.display = 'none';
+    // Setup Video Thumbnail with Play Button
+    function setupVideoThumbnail() {
+        const videoContainer = document.getElementById('videoThumbnail');
+        videoContainer.style.backgroundImage = `url(${YOUTUBE_THUMBNAIL})`;
+        videoContainer.style.backgroundSize = 'cover';
+        videoContainer.style.backgroundPosition = 'center';
+        
+        videoContainer.addEventListener('click', function() {
+            window.open(YOUTUBE_VIDEO_URL, '_blank');
+        });
     }
 
-    // Update User Profile with Photo
+    // Update User Profile with Photo (data preserved internally but not shown)
     function updateUserProfile() {
-        const fullName = `${userData.firstName || ''} ${userData.lastName || ''}`.trim();
-        document.getElementById('profileName').textContent = fullName || 'User';
-        document.getElementById('userName').textContent = '@' + (userData.username || 'username');
-        document.getElementById('userId').textContent = 'ID: ' + userData.chatId;
-        
-        const profilePic = document.getElementById('profilePic');
-        if (userData.photoUrl) {
-            profilePic.style.backgroundImage = `url(${userData.photoUrl})`;
-            profilePic.textContent = '';
-        } else {
-            const initials = (userData.firstName ? userData.firstName.charAt(0).toUpperCase() : '') + 
-                           (userData.lastName ? userData.lastName.charAt(0).toUpperCase() : '');
-            profilePic.textContent = initials || 'U';
-        }
+        // User profile is completely hidden but data is preserved in userData object
+        console.log('User data loaded internally:', {
+            chatId: userData.chatId,
+            username: userData.username,
+            name: `${userData.firstName} ${userData.lastName}`.trim()
+        });
     }
 
     // Load Payment Settings from new collection
@@ -1396,12 +1249,10 @@
 
     // Select Payment Method
     function selectPaymentMethod(method, card) {
-        // Remove selected class from all
         document.querySelectorAll('.payment-method-card').forEach(el => {
             el.classList.remove('selected');
         });
         
-        // Add selected class to clicked card
         card.classList.add('selected');
         
         selectedPaymentMethod = method;
@@ -1411,31 +1262,33 @@
         validatePaymentForm();
     }
 
-    // Load User Data - IMPROVED WITH ERROR HANDLING
-    async function loadUserData() {
-        try {
-            // Load balance
-            const balanceDoc = await db.collection('userBalance').doc(userData.chatId).get();
-            if (balanceDoc.exists) {
-                const data = balanceDoc.data();
-                userBalance = data.mainBalance || data.balance || 0;
-                document.getElementById('availableBalance').textContent = `৳${userBalance.toFixed(2)}`;
-            }
+    // Load User Data
+    function loadUserData() {
+        // Load balance
+        db.collection('userBalance').doc(userData.chatId).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    userBalance = data.mainBalance || data.balance || 0;
+                    document.getElementById('availableBalance').textContent = `৳${userBalance.toFixed(2)}`;
+                }
+            })
+            .catch((error) => {
+                console.error('Error loading balance:', error);
+            });
 
-            // Check password
-            const passwordDoc = await db.collection('userPassword').doc(userData.chatId).get();
-            if (!passwordDoc.exists) {
-                setTimeout(() => {
-                    showPasswordSetupModal();
-                }, 2000);
-            }
-
-            // Load withdraw history from userWithdraw collection
-            loadWithdrawHistory();
-        } catch (error) {
-            console.error('Error loading user data:', error);
-            showAlert('Error', 'Failed to load user data', 'error');
-        }
+        // Check password
+        db.collection('userPassword').doc(userData.chatId).get()
+            .then((doc) => {
+                if (!doc.exists) {
+                    setTimeout(() => {
+                        showPasswordSetupModal();
+                    }, 2000);
+                }
+            })
+            .catch((error) => {
+                console.error('Error checking password:', error);
+            });
     }
 
     // Setup Event Listeners
@@ -1467,9 +1320,6 @@
         
         // Amount input with fee calculation
         document.getElementById('withdrawAmount').addEventListener('input', validateAmountWithFee);
-        
-        // Search history
-        document.getElementById('searchHistory').addEventListener('input', searchHistory);
     }
 
     // Page Navigation
@@ -1485,7 +1335,6 @@
         document.getElementById('amountPage').style.display = 'block';
         document.getElementById('paymentPage').style.display = 'none';
         
-        // Auto-focus amount input
         setTimeout(() => {
             document.getElementById('withdrawAmount').focus();
         }, 300);
@@ -1530,7 +1379,6 @@
         if (amount && amount > 0 && amount >= paymentSettings.minWithdraw && amount <= paymentSettings.maxWithdraw) {
             continueBtn.disabled = false;
             
-            // Calculate and display fee
             if (paymentSettings.withdrawFee > 0) {
                 const fee = (amount * paymentSettings.withdrawFee) / 100;
                 const netAmount = amount - fee;
@@ -1556,7 +1404,6 @@
     function addPaymentMethod() {
         const number = document.getElementById('paymentNumberInput').value.trim();
 
-        // Validation
         if (!selectedPaymentMethod) {
             showAlert('Required', 'Please select payment method first', 'error');
             return;
@@ -1573,13 +1420,11 @@
             return;
         }
 
-        // Check for duplicate
         if (savedPayments.some(p => p.method === selectedPaymentMethod && p.number === number)) {
             showAlert('Duplicate', 'This payment method is already added', 'warning');
             return;
         }
 
-        // Add to saved payments
         savedPayments.push({ 
             method: selectedPaymentMethod, 
             number: number,
@@ -1587,10 +1432,7 @@
         });
         renderSavedPayments();
         
-        // Reset inputs
         document.getElementById('paymentNumberInput').value = '';
-        
-        // Enable confirm button if we have at least one payment method
         document.getElementById('confirmWithdrawBtn').disabled = savedPayments.length === 0;
         
         showAlert('Success', 'Payment method added successfully', 'success');
@@ -1623,7 +1465,6 @@
             container.appendChild(paymentEl);
         });
 
-        // Add delete event listeners
         document.querySelectorAll('.delete-payment-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
@@ -1666,7 +1507,6 @@
             return;
         }
         
-        // Check if user is blocked before showing password verification
         if (isUserBlocked) {
             showBlockAlertPopup();
             return;
@@ -1719,11 +1559,6 @@
         window.location.href = `${baseUrl}/error/error.html?${params.toString()}`;
     }
 
-    // Go to Home Page with Reload
-    function goToHomePage() {
-        window.location.reload();
-    }
-
     // Save Password
     function savePassword(e) {
         e.preventDefault();
@@ -1758,14 +1593,14 @@
         });
     }
 
-    // Process Withdrawal with Block System - FIXED VERSION
+    // Process Withdrawal - FIXED PASSWORD VERIFICATION
     async function processWithdrawal(e) {
         e.preventDefault();
         
         const enteredPassword = document.getElementById('verifyPassword').value;
         
         if (!enteredPassword || enteredPassword.length !== 6) {
-            showAlert('Error', 'Please enter a valid 6-digit password', 'error');
+            showAlert('Error', 'Please enter 6-digit password', 'error');
             return;
         }
 
@@ -1782,14 +1617,12 @@
             if (storedPassword !== enteredPassword) {
                 wrongPasswordAttempts++;
                 
-                // Update wrong password attempts in userBlockList
                 await db.collection('userBlockList').doc(userData.chatId).set({
                     enterWrongPassword: wrongPasswordAttempts,
                     lastAttempt: new Date()
                 }, { merge: true });
                 
                 if (wrongPasswordAttempts >= 3) {
-                    // Block user after 3 wrong attempts
                     await blockUser();
                     closePasswordVerify();
                     return;
@@ -1800,7 +1633,6 @@
                 return;
             }
             
-            // Password correct, reset attempts and process withdrawal
             wrongPasswordAttempts = 0;
             await db.collection('userBlockList').doc(userData.chatId).update({
                 enterWrongPassword: 0
@@ -1833,44 +1665,35 @@
         }
     }
 
-    // Submit Withdraw Request with Fee Calculation - FIXED TELEGRAM NOTIFICATION
+    // Submit Withdraw Request with Fee Calculation
     async function submitWithdrawRequest() {
-        try {
-            // Calculate fee
-            const fee = paymentSettings.withdrawFee > 0 ? 
-                (currentWithdrawAmount * paymentSettings.withdrawFee) / 100 : 0;
-            const netAmount = currentWithdrawAmount - fee;
+        const fee = paymentSettings.withdrawFee > 0 ? 
+            (currentWithdrawAmount * paymentSettings.withdrawFee) / 100 : 0;
+        const netAmount = currentWithdrawAmount - fee;
 
-            const requestData = {
-                userId: userData.chatId,
-                username: userData.username,
-                fullName: `${userData.firstName} ${userData.lastName}`.trim(),
-                amount: currentWithdrawAmount,
-                fee: fee,
-                netAmount: netAmount,
-                paymentMethods: savedPayments,
-                status: 'pending',
-                createdAt: new Date()
-            };
-            
-            // Save to userWithdraw collection
+        const requestData = {
+            userId: userData.chatId,
+            username: userData.username,
+            fullName: `${userData.firstName} ${userData.lastName}`.trim(),
+            amount: currentWithdrawAmount,
+            fee: fee,
+            netAmount: netAmount,
+            paymentMethods: savedPayments,
+            status: 'pending',
+            createdAt: new Date()
+        };
+        
+        try {
             const docRef = await db.collection('userWithdraw').add(requestData);
             const transactionId = docRef.id;
             
-            // Update user balance
             const newBalance = userBalance - currentWithdrawAmount;
             await db.collection('userBalance').doc(userData.chatId).update({
                 mainBalance: newBalance
             });
             
-            // Send Telegram notifications
             await sendTelegramNotifications(transactionId, fee, netAmount);
-            
-            // REDIRECT TO SUCCESS PAGE
             redirectToSuccessPage(transactionId, fee, netAmount);
-            
-            // Reload history to show new request
-            loadWithdrawHistory();
             
         } catch (error) {
             console.error('Error submitting withdrawal:', error);
@@ -1878,78 +1701,58 @@
         }
     }
 
-    // REDIRECT TO SUCCESS PAGE
+    // Redirect to Success Page with All Data
     function redirectToSuccessPage(transactionId, fee, netAmount) {
         const baseUrl = window.location.origin;
         const isDarkMode = document.body.classList.contains('dark-mode');
         
-        // Prepare all data for success page
-        const params = new URLSearchParams({
-            // User Profile Data
-            userId: userData.chatId,
-            userName: userData.username,
-            firstName: userData.firstName,
-            lastName: userData.lastName,
-            photoUrl: userData.photoUrl || '',
-            
-            // Withdrawal Data
+        const successData = {
+            transactionId: transactionId,
             amount: currentWithdrawAmount,
             fee: fee,
             netAmount: netAmount,
-            transactionId: transactionId,
-            
-            // Payment Methods Data
             paymentMethods: JSON.stringify(savedPayments),
-            
-            // Theme
+            userId: userData.chatId,
+            userName: userData.username,
+            fullName: `${userData.firstName} ${userData.lastName}`.trim(),
+            userPhoto: userData.photoUrl || '',
             theme: isDarkMode ? 'dark' : 'light',
-            
-            // Action type
-            action: 'withdraw_success'
-        });
+            timestamp: new Date().toISOString()
+        };
         
-        // Redirect to success page
-        window.location.href = `${baseUrl}/success/index.html?${params.toString()}`;
+        const encodedData = btoa(JSON.stringify(successData));
+        window.location.href = `${baseUrl}/success/index.html?data=${encodedData}`;
     }
 
-    // Send Telegram Notifications - FIXED VERSION
+    // Send Telegram Notifications with Fee Information
     async function sendTelegramNotifications(transactionId, fee, netAmount) {
-        try {
-            // User confirmation
-            const userMessage = `💰 *Withdrawal Request Submitted*\n\n` +
-                               `*Amount:* ${currentWithdrawAmount}৳\n` +
-                               `*You will receive:* ${netAmount.toFixed(2)}৳\n` +
-                               `*Fee:* ${fee.toFixed(2)}৳\n` +
-                               `*TrxID:* \`${transactionId}\`\n` +
-                               `*Status:* ⏳ Pending\n\n` +
-                               `We will process your request within 5-24 hours.`;
-            
-            await sendTelegramMessage(userData.chatId, userMessage);
-            
-            // Admin notification
-            const paymentMethodsText = savedPayments.map(p => 
-                `▫️ *${p.method}:* \`${p.number}\``
-            ).join('\n');
-            
-            const adminMessage = `🔄 *NEW WITHDRAWAL REQUEST*\n\n` +
-                                `👤 *User Details:*\n` +
-                                `• *Name:* ${userData.firstName} ${userData.lastName}\n` +
-                                `• *Username:* @${userData.username}\n` +
-                                `• *User ID:* \`${userData.chatId}\`\n\n` +
-                                `💰 *Payment Details:*\n` +
-                                `• *Amount:* ${currentWithdrawAmount}৳\n` +
-                                `• *Fee:* ${fee.toFixed(2)}৳\n` +
-                                `• *Net Amount:* ${netAmount.toFixed(2)}৳\n` +
-                                `• *TrxID:* \`${transactionId}\`\n\n` +
-                                `💳 *Payment Methods:*\n${paymentMethodsText}\n\n` +
-                                `⏰ *Time:* ${new Date().toLocaleString()}`;
-            
-            await sendTelegramMessage(ADMIN_CHANNEL_ID, adminMessage);
-            
-        } catch (error) {
-            console.error('Error sending Telegram notifications:', error);
-            // Continue even if Telegram fails
-        }
+        const userMessage = `💰 *Withdrawal Request Submitted*\n\n` +
+                           `*Amount:* ${currentWithdrawAmount}৳\n` +
+                           `*You will receive:* ${netAmount.toFixed(2)}৳\n` +
+                           `*Fee:* ${fee.toFixed(2)}৳\n` +
+                           `*TrxID:* \`${transactionId}\`\n` +
+                           `*Status:* ⏳ Pending\n\n` +
+                           `We will process your request within 5-24 hours.`;
+        
+        await sendTelegramMessage(userData.chatId, userMessage);
+        
+        const paymentMethodsText = savedPayments.map(p => 
+            `▫️ *${p.method}:* \`${p.number}\``
+        ).join('\n');
+        
+        const adminMessage = `🔄 *NEW WITHDRAWAL REQUEST*\n\n` +
+                            `👤 *User Details:*\n` +
+                            `• *Name:* ${userData.firstName} ${userData.lastName}\n` +
+                            `• *Username:* @${userData.username}\n` +
+                            `• *User ID:* \`${userData.chatId}\`\n\n` +
+                            `💰 *Payment Details:*\n` +
+                            `• *Amount:* ${currentWithdrawAmount}৳\n` +
+                            `• *Fee:* ${fee.toFixed(2)}৳\n` +
+                            `• *Net Amount:* ${netAmount.toFixed(2)}৳\n` +
+                            `• *TrxID:* \`${transactionId}\`\n\n` +
+                            `⏰ *Time:* ${new Date().toLocaleString()}`;
+        
+        await sendTelegramMessage(ADMIN_CHANNEL_ID, adminMessage);
     }
 
     async function sendTelegramMessage(chatId, message) {
@@ -1969,12 +1772,11 @@
             const result = await response.json();
             if (!result.ok) {
                 console.error('Telegram API error:', result);
-                throw new Error(result.description || 'Telegram API error');
             }
             return result;
         } catch (error) {
             console.error('Error sending Telegram message:', error);
-            throw error;
+            return { ok: false };
         }
     }
 
@@ -1986,11 +1788,6 @@
                 modal.classList.remove('show');
             }
         });
-    }
-
-    // Join Group
-    function joinGroup() {
-        window.open('https://t.me/FbmMarketBD', '_blank');
     }
 
     // Go to Deposit with User Data
@@ -2015,166 +1812,7 @@
         document.getElementById('insufficientBalanceAlert').classList.add('show');
     }
 
-    // Load Withdraw History from userWithdraw collection
-    function loadWithdrawHistory() {
-        if (!userData || !userData.chatId) {
-            console.error('User data not available');
-            return;
-        }
-
-        db.collection('userWithdraw')
-            .where('userId', '==', userData.chatId)
-            .orderBy('createdAt', 'desc')
-            .get()
-            .then((querySnapshot) => {
-                const historyList = document.getElementById('historyList');
-                historyList.innerHTML = '';
-                
-                if (querySnapshot.empty) {
-                    historyList.innerHTML = `
-                        <div class="no-history">
-                            <i class="fas fa-receipt"></i>
-                            <div>No withdrawal history found</div>
-                            <div style="font-size: 0.8rem; margin-top: 10px; color: var(--text-light);">
-                                Your withdrawal requests will appear here
-                            </div>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                querySnapshot.forEach((doc) => {
-                    const request = doc.data();
-                    const historyItem = createHistoryItem(request, doc.id);
-                    historyList.appendChild(historyItem);
-                });
-            })
-            .catch((error) => {
-                console.error('Error loading history:', error);
-                const historyList = document.getElementById('historyList');
-                historyList.innerHTML = `
-                    <div class="no-history">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>Error loading history</div>
-                        <div style="font-size: 0.8rem; margin-top: 10px; color: var(--text-light);">
-                            Please try again later
-                        </div>
-                    </div>
-                `;
-            });
-    }
-
-    // Create History Item
-    function createHistoryItem(request, docId) {
-        const date = request.createdAt?.toDate ? request.createdAt.toDate() : new Date(request.createdAt);
-        const formattedDate = date.toLocaleDateString();
-        const formattedTime = date.toLocaleTimeString();
-        
-        // Get payment methods for display
-        const paymentMethods = request.paymentMethods || [];
-        const primaryMethod = paymentMethods.length > 0 ? paymentMethods[0] : { method: 'Unknown', number: 'N/A' };
-        
-        const historyItem = document.createElement('div');
-        historyItem.className = 'history-item';
-        historyItem.innerHTML = `
-            <div class="history-header">
-                <span class="history-timestamp" title="${docId}">
-                    <i class="fas fa-hashtag"></i> ${docId.substring(0, 8)}...
-                </span>
-                <span class="history-amount">
-                    <i class="fas fa-money-bill-wave"></i> ${request.amount} ৳
-                </span>
-            </div>
-            <div class="history-payment-method">
-                <i class="fas fa-wallet"></i> ${primaryMethod.method}: ${primaryMethod.number}
-                ${paymentMethods.length > 1 ? ` +${paymentMethods.length - 1} more` : ''}
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-                <span class="history-date">
-                    <i class="fas fa-calendar"></i> ${formattedDate} ${formattedTime}
-                </span>
-                <span class="history-status status-${request.status}">
-                    ${request.status.charAt(0).toUpperCase() + request.status.slice(1)}
-                </span>
-            </div>
-        `;
-        
-        historyItem.addEventListener('click', function() {
-            showWithdrawDetails(request, docId);
-        });
-        
-        return historyItem;
-    }
-
-    // Show Withdraw Details
-    function showWithdrawDetails(request, docId) {
-        const date = request.createdAt?.toDate ? request.createdAt.toDate() : new Date(request.createdAt);
-        const formattedDate = date.toLocaleDateString();
-        const formattedTime = date.toLocaleTimeString();
-        
-        let paymentMethodsText = '';
-        if (request.paymentMethods && request.paymentMethods.length > 0) {
-            paymentMethodsText = request.paymentMethods.map(p => 
-                `<div style="margin: 5px 0; padding: 5px; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                    <strong>${p.method}:</strong> ${p.number}
-                </div>`
-            ).join('');
-        }
-        
-        const detailMessage = `
-            <div style="text-align: left; max-height: 400px; overflow-y: auto;">
-                <div style="margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
-                    <strong>Amount:</strong> ${request.amount}৳<br>
-                    <strong>Fee:</strong> ${request.fee || 0}৳<br>
-                    <strong>Net Amount:</strong> ${request.netAmount || request.amount}৳<br>
-                    <strong>Status:</strong> <span class="status-${request.status}">${request.status}</span><br>
-                    <strong>Date:</strong> ${formattedDate}<br>
-                    <strong>Time:</strong> ${formattedTime}<br>
-                    <strong>TrxID:</strong> <span style="font-family: monospace; font-size: 0.8rem; word-break: break-all;">${docId}</span>
-                </div>
-                ${paymentMethodsText ? `
-                <div style="margin-bottom: 15px;">
-                    <strong style="display: block; margin-bottom: 8px;">Payment Methods:</strong>
-                    ${paymentMethodsText}
-                </div>
-                ` : ''}
-            </div>
-        `;
-        
-        showAlert('Withdrawal Details', detailMessage, 'info');
-    }
-
-    // Search History
-    function searchHistory() {
-        const searchTerm = document.getElementById('searchHistory').value.toLowerCase();
-        const historyItems = document.querySelectorAll('.history-item');
-        
-        let foundItems = 0;
-        
-        historyItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            if (text.includes(searchTerm)) {
-                item.style.display = 'block';
-                foundItems++;
-            } else {
-                item.style.display = 'none';
-            }
-        });
-        
-        // Show no results message if no items found
-        if (foundItems === 0 && searchTerm !== '') {
-            const historyList = document.getElementById('historyList');
-            const noResults = document.createElement('div');
-            noResults.className = 'no-history';
-            noResults.innerHTML = `
-                <i class="fas fa-search"></i>
-                <div>No results found for "${searchTerm}"</div>
-            `;
-            historyList.appendChild(noResults);
-        }
-    }
-
-    // Show Alert - ছোট এবং ডান পাশে কোনায়
+    // Show Alert
     function showAlert(title, text, icon) {
         Swal.fire({
             title: title,
@@ -2184,12 +1822,7 @@
             position: 'top-end',
             showConfirmButton: false,
             timer: 4000,
-            timerProgressBar: true,
-            customClass: {
-                popup: 'mini-alert-popup',
-                title: 'mini-alert-title',
-                icon: 'mini-alert-icon'
-            }
+            timerProgressBar: true
         });
     }
 </script>
