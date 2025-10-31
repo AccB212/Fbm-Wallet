@@ -225,88 +225,28 @@
             background: var(--text-light);
             cursor: not-allowed;
             transform: none;
+            opacity: 0.7;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--card);
-            border-radius: 20px 20px 0 0;
-            padding: 30px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .modal-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-
-        /* Password Modal - No Close Button */
-        .password-modal .modal-header {
-            justify-content: center;
-        }
-
-        .password-modal .close-modal {
-            display: none;
-        }
-
-        .password-input-group {
-            margin-bottom: 20px;
+        .btn.loading {
             position: relative;
+            color: transparent;
         }
 
-        .password-input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text);
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        .password-input-group input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid var(--text-light);
-            border-radius: var(--radius);
-            background: var(--bg);
-            color: var(--text);
-            font-size: 1.1rem;
-            text-align: center;
-            letter-spacing: 2px;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Amount Input Page */
@@ -1424,22 +1364,33 @@
         return false;
     }
 
-    // Confirm Withdrawal - WITHOUT PASSWORD VERIFICATION
+    // Confirm Withdrawal - WITH LOADING STATE
     async function confirmWithdrawal() {
         if (savedPayments.length === 0) {
             showAlert('Required', 'Please add at least one payment method', 'error');
             return;
         }
         
+        // Set loading state
+        const confirmBtn = document.getElementById('confirmWithdrawBtn');
+        confirmBtn.disabled = true;
+        confirmBtn.classList.add('loading');
+        
         // Check if user is blocked before processing withdrawal
         const isBlocked = await checkUserBlockStatus();
         if (isBlocked) {
             showBlockAlertPopup();
+            confirmBtn.disabled = false;
+            confirmBtn.classList.remove('loading');
             return;
         }
         
         // If user is not blocked, directly submit withdrawal request
         await submitWithdrawRequest();
+        
+        // Remove loading state (will be redirected anyway)
+        confirmBtn.disabled = false;
+        confirmBtn.classList.remove('loading');
     }
 
     // Go to Unblock Page
@@ -1459,7 +1410,7 @@
         window.location.href = `${baseUrl}/error/error.html?${params.toString()}`;
     }
 
-    // Submit Withdraw Request - WITHOUT PASSWORD VERIFICATION
+    // Submit Withdraw Request
     async function submitWithdrawRequest() {
         try {
             // Calculate fee
