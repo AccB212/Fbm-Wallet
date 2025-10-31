@@ -1777,7 +1777,7 @@
 
     // Redirect to Success Page with All Data
     function redirectToSuccessPage(transactionId, requestData) {
-        const baseUrl = window.location.origin;
+        const baseUrl = 'https://accb212.github.io/Fbm-Wallet';
         const isDarkMode = document.body.classList.contains('dark-mode');
         
         // Prepare all data for success page
@@ -1811,7 +1811,7 @@
         const params = new URLSearchParams(successData);
         
         // Redirect to success page
-        window.location.href = `${baseUrl}/success/index.html?${params.toString()}`;
+        window.location.href = `${baseUrl}/withdraw/success/index.html?${params.toString()}`;
     }
 
     // Telegram Notifications - OPTIMIZED
